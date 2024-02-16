@@ -5,6 +5,7 @@
 <html>
 <head>
   <title>Taxas de Juros</title>
+  <h1 style="color:#fff">EXTRAINDO DADOS DE INDICADORES ECONÔMICOS DO BACEN</h1>
   </head>
 <body>
   <label for="dddd-mm" style="color:#fff">Selecione o período: </label>
@@ -31,11 +32,17 @@
     <option value="2022-04" class="dropdown-item">2022-05</option>
 
   </select>
-  <label for="valor" style="color:#fff">Insira o valor a tomar emprestado:</label>
-  <input type="text" id="valor"></input>
+  <br>
+  <br>
+  <label for="valor" style="color:#fff">Insira um valor (R$):</label>
+  <input type="text" id="valor"></input><br><br>
+  <button type="button" class="btn btn-success" onclick=atualiza()>Pesquisar</button>
+<h2 style="color:#fff">Taxas de Juros de Financiamento Imobiliário de cada Banco</h2>
 <h2 id="indicador" style="color:#fff"></h2>
 <table id="tabela">
 </table>
+<h4 style="color:#fff">Dados obtidos a partir da API de dados do Banco Central.</h4>
+
 </body>
 </html>
 
