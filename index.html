@@ -42,8 +42,6 @@
   </select>
   <br>
   <br>
-  <label for="valor" style="color:#fff">Insira um valor (R$):</label>
-  <input type="text" id="valor"></input><br><br>
   <button type="button" class="btn btn-success" onclick=atualiza()>Pesquisar</button>
 </div>
 <h2 style="color:#fff">Taxas de Juros de Financiamento Imobiliário de cada Banco</h2>
@@ -53,6 +51,8 @@
 <table id="tabela">
 </table>
 <h4 style="position:relative;left:15%;color:#fff">Dados obtidos a partir da API de dados do Banco Central.</h4>
+<h4 style="position:relative;left:15%;color:#fff">Conteúdo meramente informativo.</h4>
+
 
 </body>
 </html>
@@ -78,11 +78,7 @@
     celula2.innerHTML='TAXA DE JUROS MENSAL'
     celula3.innerHTML='TAXA DE JUROS ANUAL'
     celula4.innerHTML='MODALIDADE'
-    if(document.getElementById("valor").value!=""){
-      celula5=row.insertCell()
-      celula5.innerHTML='VALOR ANUAL A SER PAGO'
 
-    }
 
   dado.forEach(function(e){
   var table = document.createElement("table"), row,celula4, celula1, celula2, celula3;
@@ -96,12 +92,7 @@
   celula2.innerHTML=`${e['TaxaJurosAoMes']}%`
   celula3.innerHTML=`${e['TaxaJurosAoAno']}%`
   celula4.innerHTML=e['Modalidade']
-  if(document.getElementById("valor").value!=""){
-      celula5=row.insertCell()
-      console.log(document.getElementById("valor").value)
-      celula5.innerHTML=parseInt(document.getElementById("valor").value)*(100+parseFloat(e['TaxaJurosAoAno']))/100
 
-    }
   });
   })
   .catch(error => {
