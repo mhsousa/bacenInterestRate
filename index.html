@@ -8,7 +8,10 @@
 <html>
 <head>
   <title>Taxas de Juros</title>
-  <h1 style="color:#fff">EXTRAINDO DADOS DE INDICADORES ECONÔMICOS DO BACEN</h1>
+  <h4 style="position:absolute;color:#fff;">Fonte dos dados</h4>
+  <br><br>
+  <img src="Banco_Central.png" width="600" height="150" style="justify-content: center;">
+  <h1 style="color:#fff">EXTRAINDO DADOS DE INDICADORES ECONÔMICOS</h1>
   </head>
 <body>
   <label for="dddd-mm" style="color:#fff">Selecione o período: </label>
@@ -85,8 +88,8 @@
   celula3=row.insertCell()
   celula4=row.insertCell()
   celula1.innerHTML=e['InstituicaoFinanceira']
-  celula2.innerHTML=e['TaxaJurosAoMes']
-  celula3.innerHTML=e['TaxaJurosAoAno']
+  celula2.innerHTML=`${e['TaxaJurosAoMes']}%`
+  celula3.innerHTML=`${e['TaxaJurosAoAno']}%`
   celula4.innerHTML=e['Modalidade']
   if(document.getElementById("valor").value!=""){
       celula5=row.insertCell()
