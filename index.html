@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<html>
+<head>
+  <title>Taxas de Juros</title>
+  </head>
+<body>
+  <label for="dddd-mm" style="color:#fff">Selecione o período: </label>
+  <select  class="dropdown-menu" id="dddd-mm" onchange=atualiza() >
+    <option value="2023-12" class="dropdown-item" selected>2023-12</option>
+    <option value="2023-11" class="dropdown-item">2023-11</option>
+    <option value="2023-10" class="dropdown-item">2023-10</option>
+    <option value="2023-09" class="dropdown-item">2023-09</option>
+    <option value="2023-08" class="dropdown-item">2023-08</option>
+    <option value="2023-07" class="dropdown-item">2023-07</option>
+    <option value="2023-06" class="dropdown-item">2023-06</option>
+    <option value="2023-05" class="dropdown-item">2023-05</option>
+    <option value="2023-04" class="dropdown-item">2023-04</option>
+    <option value="2023-03" class="dropdown-item">2023-03</option>
+    <option value="2023-02" class="dropdown-item">2023-02</option>
+    <option value="2023-01" class="dropdown-item">2023-01</option>
+    <option value="2022-12" class="dropdown-item">2022-12</option>
+    <option value="2022-11" class="dropdown-item">2022-11</option>
+    <option value="2022-09" class="dropdown-item">2022-10</option>
+    <option value="2022-08" class="dropdown-item">2022-09</option>
+    <option value="2022-07" class="dropdown-item">2022-08</option>
+    <option value="2022-06" class="dropdown-item">2022-07</option>
+    <option value="2022-05" class="dropdown-item">2022-06</option>
+    <option value="2022-04" class="dropdown-item">2022-05</option>
+
+  </select>
+  <label for="valor" style="color:#fff">Insira o valor a tomar emprestado:</label>
+  <input type="text" id="valor"></input>
+<h2 id="indicador" style="color:#fff"></h2>
+<table id="tabela">
+</table>
+</body>
+</html>
+
+<script>
+  function atualiza(){
+  ano=document.getElementById('dddd-mm').value
+  document.getElementById('indicador').textContent=`Dados referentes ao período: ${ano}`
+  document.getElementById("tabela").innerHTML = ""
+  fetch(`https://olinda.bcb.gov.br/olinda/servico/taxaJuros/versao/v2/odata/TaxasJurosMensalPorMes?$top=100&$filter=anoMes%20eq%20'${ano}'&$format=json&$select=Mes,Modalidade,InstituicaoFinanceira,TaxaJurosAoMes,TaxaJurosAoAno,anoMes`)
+  .then(response => response.json())
+  .then(data => {
+    dado=data['value']
+    console.log(dado)
+    var tabela = document.getElementById('tabela');
+    row = tabela.insertRow();
+    celula1=row.insertCell()
+    celula2=row.insertCell()
+    celula3=row.insertCell()
+    celula4=row.insertCell()
+
+    celula1.innerHTML='INSTITUIÇÃO FINANCEIRA'
+    celula2.innerHTML='TAXA DE JUROS MENSAL'
+    celula3.innerHTML='TAXA DE JUROS ANUAL'
+    celula4.innerHTML='MODALIDADE'
+    if(document.getElementById("valor").value!=""){
+      celula5=row.insertCell()
+      celula5.innerHTML='VALOR ANUAL A SER PAGO'
+
+    }
+
+  dado.forEach(function(e){
+  var table = document.createElement("table"), row,celula4, celula1, celula2, celula3;
+  document.getElementById("tabela").appendChild(table);
+  row = tabela.insertRow();
+  celula1=row.insertCell()
+  celula2=row.insertCell()
+  celula3=row.insertCell()
+  celula4=row.insertCell()
+  celula1.innerHTML=e['InstituicaoFinanceira']
+  celula2.innerHTML=e['TaxaJurosAoMes']
+  celula3.innerHTML=e['TaxaJurosAoAno']
+  celula4.innerHTML=e['Modalidade']
+  if(document.getElementById("valor").value!=""){
+      celula5=row.insertCell()
+      console.log(document.getElementById("valor").value)
+      celula5.innerHTML=parseInt(document.getElementById("valor").value)*(100+parseFloat(e['TaxaJurosAoAno']))/100
+
+    }
+  });
+  })
+  .catch(error => {
+  console.log(error)  });
+  }
+atualiza()
+</script>
+<style>
+  body{
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgb(9, 2, 99) 35%, rgb(233, 169, 7) 100%);
+  }
+  #dddd-mm{
+  width:12%;
+
+}
+ table {
+  width: 70%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+th, td {
+  border: 2px solid #000;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+th {
+  background-color: #ff9933;
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px #000;
+}
+
+td {
+  background-color: #fff;
+  color: #000;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+  background-color: #fafafa;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+td:first-child::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image: url(imagem.png);
+}
+
+
+tr:hover {
+  animation: bounce 0.7s ease-in-out infinite;
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+
+th {
+  font-family: "Comic Sans MS", cursive;
+}
+
+td {
+  font-family: Arial, sans-serif;
+}
+
+</style>
