@@ -62,7 +62,7 @@
   ano=document.getElementById('dddd-mm').value
   document.getElementById('indicador').textContent=`Dados referentes ao período: ${ano}`
   document.getElementById("tabela").innerHTML = ""
-  fetch(`https://olinda.bcb.gov.br/olinda/servico/taxaJuros/versao/v2/odata/TaxasJurosMensalPorMes?$top=100&$filter=anoMes%20eq%20'${ano}'&$format=json&$select=Mes,Modalidade,InstituicaoFinanceira,TaxaJurosAoMes,TaxaJurosAoAno,anoMes`)
+  fetch(`https://olinda.bcb.gov.br/olinda/servico/taxaJuros/versao/v2/odata/TaxasJurosMensalPorMes?$top=100&$orderby=TaxaJurosAoMes%20asc&$filter=anoMes%20eq%20'${ano}'&$format=json&$select=Mes,Modalidade,InstituicaoFinanceira,TaxaJurosAoMes,TaxaJurosAoAno,anoMes`)
   .then(response => response.json())
   .then(data => {
     dado=data['value']
