@@ -11,9 +11,11 @@
   <h4 style="position:absolute;color:#fff;">Fonte dos dados</h4>
   <br><br>
   <img src="Banco_Central.png" width="600" height="150" style="justify-content: center;">
+  <div style="position:relative;left:15%;">
   <h1 style="color:#fff">EXTRAINDO DADOS DE INDICADORES ECONÔMICOS</h1>
   </head>
 <body>
+  <div style="position:relative;left:3%">
   <label for="dddd-mm" style="color:#fff">Selecione o período: </label>
   <select  class="dropdown-menu" id="dddd-mm" onchange=atualiza() >
     <option value="2023-12" class="dropdown-item" selected>2023-12</option>
@@ -43,11 +45,14 @@
   <label for="valor" style="color:#fff">Insira um valor (R$):</label>
   <input type="text" id="valor"></input><br><br>
   <button type="button" class="btn btn-success" onclick=atualiza()>Pesquisar</button>
+</div>
 <h2 style="color:#fff">Taxas de Juros de Financiamento Imobiliário de cada Banco</h2>
 <h2 id="indicador" style="color:#fff"></h2>
+</div>
+
 <table id="tabela">
 </table>
-<h4 style="color:#fff">Dados obtidos a partir da API de dados do Banco Central.</h4>
+<h4 style="position:relative;left:15%;color:#fff">Dados obtidos a partir da API de dados do Banco Central.</h4>
 
 </body>
 </html>
