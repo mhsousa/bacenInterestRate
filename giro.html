@@ -11,25 +11,26 @@
 
         <img class="logo" src=".\assets\banco_central.png"/>
         <div id="navigation">   
-        <a href="index.html">JUROS IMOBILIÁRIO</a>
-        <a href="moedas.html">VOLUME DE DINHEIRO</a>
-        <a href="giro.html">GIRO MONETÁRIO</a>
-      </div>
+          <a href="index.html">JUROS IMOBILIÁRIO</a>
+          <a href="moedas.html">VOLUME DE DINHEIRO</a>
+          <a href="giro.html">GIRO MONETÁRIO</a>
+        </div>
 
       </div>
     </header>
     <main class="content">
       <h1>INDICADORES ECONÔMICOS - BACEN </h1>
-      <h2>Taxas de Juros de Financiamento Imobiliário praticado por cada Instituição Financeira</h2>
+      <h2>Movimentações financeiras transitadas no STR na data considerando todas as ordens que resultam em movimentação financeira, exceto Recolhimentos Compulsórios e Meio Circulante. Este valor é representado em R$ milhões.</h2>
       <h2 id="indicador"></h2>
 
       <div class="select">
         <label for="dddd-mm">Alterar período: </label>
-        <select
+        <input
+         type="date"
           class="dropdown-menu"
           id="dddd-mm"
-          onchange="atualizaJurosImob()"
-        ></select>
+          onchange="giro_atualiza()"
+        ></input>
       </div>
       
       <table id="tabela"></table>
@@ -38,15 +39,13 @@
         <span class="loader" id="loader"></span>
       </div>
     </main>
-  
+    <footer>
+      <h4>Dados obtidos a partir da API de dados do Banco Central.</h4>
+      <h4>Conteúdo meramente informativo.</h4>
+      <script src="./scripts.js"></script>
+    </footer>
   </body>
-  <footer>
-    <h4>Dados obtidos a partir da API de dados do Banco Central.</h4>
-    <h4>Conteúdo meramente informativo.</h4>
-  </footer>
 </html>
-<script src="./scripts.js"></script>
 <script>
-  hasAlreadyMonth_Juros=false
-  atualizaJurosImob()
-  </script>
+  giro_atualiza()
+</script>

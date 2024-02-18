@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Taxas de Juros</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h4 class="info">Fonte dos dados</h4>
+          <img class="logo" src=".\assets\banco_central.png"/>
+        <div id="navigation">   
+          <a href="index.html">JUROS IMOBILIÁRIO</a>
+          <a href="moedas.html">VOLUME DE DINHEIRO</a>
+          <a href="giro.html">GIRO MONETÁRIO</a>
+        </div>
+      </div>
+    </header>
+    <main class="content">
+      <h1>INDICADORES ECONÔMICOS - BACEN </h1>
+      <h2>Valor e Quantidade de moeda emitida e em circulação na Economia Brasileira por valor de face </h2>
+      <h2 id="indicador"></h2>
+      <div class="select">
+        <label for="dddd-mm">Alterar período: </label>
+        <input type="date" class="dropdown-menu"id="dddd-mm" onchange="moeda_atualiza()"></input>
+      </div>
+      <table id="tabela"></table>
+      <div class="div-loader" id="div-loader" style="display: none">
+        <span class="loader" id="loader"></span>
+      </div>
+    </main>
+    <footer>
+      <h4>Dados obtidos a partir da API de dados do Banco Central.</h4>
+      <h4>Conteúdo meramente informativo.</h4>
+      <script src="./scripts.js"></script>
+    </footer>
+  </body>
+</html>
+<script>moeda_atualiza()</script>
+
