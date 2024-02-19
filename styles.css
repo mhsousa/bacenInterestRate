@@ -49,6 +49,9 @@ a:hover {
   gap: 20px;
   padding: 20px;
 }
+.content h2{
+  font-size: small;
+}
 .select {
   display: flex;
   width: 100%;
